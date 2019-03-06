@@ -40,7 +40,7 @@ void QuickSort(int arr[],int L,int R)
 
 void QuickSort2(int arr[],int L,int R)
 {
-    if(L=R)  //或者 if (L>=R)
+    if(L>=R)  //L==R 有一点问题
         return;
     int pivot = arr[R];
     int less=L-1;
