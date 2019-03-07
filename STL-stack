@@ -72,3 +72,4 @@ void printStack(stack<int> &st)
 	}
 	cout << endl;
 }
+ 
