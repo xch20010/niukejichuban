@@ -16,6 +16,7 @@ int main()
 		cout << i << " ";
 	}
 	cout << endl;
+	cout<<"size = "<<st.size()<<endl;
 	//反转
 	// 依次弹出堆栈中的元素并显示，分别为4,3,2,1,0
 	cout << "出栈：";
@@ -72,4 +73,3 @@ void printStack(stack<int> &st)
 	}
 	cout << endl;
 }
- 
