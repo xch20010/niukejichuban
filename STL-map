@@ -1,0 +1,27 @@
+#include<string>
+#include<iostream>
+#include<map>
+using namespace std;
+
+int main()
+{
+    map<string,int> dict;
+    dict.insert(pair<string,int>("Tom",1));
+    dict.insert(pair<string, int>("Jone", 2)); // {"Tom"->1, "Jone"->2}
+    dict.insert(pair<string, int>("Mary", 1)); // {"Tom"->1, "Jone"->2, "Mary"->1}
+    //如果插入的 key 之前已经有了 value，不会用插入的新的 value 替代原来的 value，也就是此次插入是无效的。
+    dict.insert(pair<string, int>("Tom", 2)); // {"Tom"->1, "Jone"->2, "Mary"->1}
+
+    //访问映射
+    cout<<"Mary is in class "<<dict["Mary"]<<endl;
+    //查找关键字
+    //在 C++ 中，如果你想知道某个关键字是否被映射过，你可以直接用 count( ) 方法。如果被映射过，返回 1 ，否则返回 0 。
+    if(dict.count("Mary"))
+        cout<<"Mary is in the class"<<endl;
+    else
+        cout<<"Mart is not in the class"<<endl;
+    //遍历映射
+    //在 C++ 中，通过迭代器可以访问映射中的每个映射，每个迭代器的 first 值对应 key，second 值对应 value。
+    for (map<string,int>::iterator it = dict.begin();it!=dict.end();++it)
+        cout<<it->first<<" is in class "<<it->second<<endl;
+}
