@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+
+
+int findbid(int num,int size,int arrmin,int arrmax)  //size表示数组的个数，表示桶的最大编号（0~size），实际有size+1个桶
+{
+    return int((num-arrmin)*size/(arrmax-arrmin));
+}
+
+int findmaxdiff(int arr[],int size)
+{
+    if(size<2)
+        return 0;
+    int arrmin = 1000;
+    int arrmax = -1000;
+    for(int i =0;i<size;i++)
+    {
+        arrmin = min(arrmin,arr[i]);
+        arrmax = max(arrmax,arr[i]);
+    }
+    if (arrmin==arrmax)
+        return 0;
+    //cout<<arr[2]<<endl;
+    //cout<<arrmin<<endl<<arrmax<<endl;
+
+    bool hasnums[size+1]={0};  //一定要初始化，否则错误；表示该桶有无数进入
+    int mins[size+1]; //表示该桶里最小数的值
+    int maxs[size+1];
+    int bid=0; //表示第几个桶
+    for(int i = 0;i<size;i++)
+    {
+        bid = findbid(arr[i],size,arrmin,arrmax); //size表示数组个数，size+1表示桶的个数
+        cout<<arr[i]<<" is in "<<bid<<endl;
+        mins[bid] = hasnums[bid] ? min(mins[bid],arr[i]):arr[i];
+        maxs[bid] = hasnums[bid] ? max(maxs[bid],arr[i]):arr[i];
+        hasnums[bid] = true;
+    }
+    //现在数组已经被放在桶里面了
+    int res=0;
+    int lastmax=maxs[0]; //maxs[0]一定有数
+    cout<<"max[0] is "<<maxs[0] <<endl;
+    for(int i=1;i<size+1;i++)   //以桶的个数来循环
+    {
+        if(hasnums[i])
+            {
+                res = max(res,mins[i] - lastmax);
+                lastmax = maxs[i];
+                cout<<"res is "<<res<<endl;
+            }
+    }
+    return res;
+}
+
+
+
+int main()
+{
+    int arr[7] = {0,5,15,22,13,99,45};
+    cout<<findmaxdiff(arr,7);
+
+}
