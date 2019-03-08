@@ -52,9 +52,11 @@ public:
                 cout<<arr[(start+i)%size];
             }
             cout<<endl;
-
-
         }
+    }
+    ~arrQueue()
+    {
+        delete[] arr;
     }
 };
 
