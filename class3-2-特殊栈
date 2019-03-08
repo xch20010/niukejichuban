@@ -1,0 +1,72 @@
+#include<string>
+#include<iostream>
+#include<stack>
+using namespace std;
+/*
+实现一个特殊的栈，在实现栈的基本功能的基础上，再实现返
+回栈中最小元素的操作。
+【要求】
+1．pop、push、getMin操作的时间复杂度都是O(1)。
+2．设计的栈类型可以使用现成的栈结构。
+*/
+class newStack
+{
+    stack<int> datastack;
+    stack<int> minstack;
+public:
+    void push(int num)
+    {
+        if(datastack.empty())
+        {
+            datastack.push(num);
+            minstack.push(num);
+        }
+        else
+        {
+            datastack.push(num);
+            minstack.push(num<minstack.top()? num:minstack.top());
+        }
+    }
+
+    void pop()
+    {
+        datastack.pop();
+        minstack.pop();
+    }
+    void getmin()
+    {
+        if(minstack.empty())
+            cout<<"The stack is empty!"<<endl;
+        else
+            cout<<"The minimum is: "<<minstack.top()<<endl;
+    }
+};
+
+
+int main()
+{
+    newStack ns;
+    ns.push(5);
+    ns.getmin();
+    ns.push(15);
+    ns.getmin();
+    ns.push(33);
+    ns.getmin();
+    ns.push(2);
+    ns.getmin();
+    ns.push(1);
+    ns.getmin();
+//pop
+    ns.pop();
+    ns.getmin();
+    ns.pop();
+    ns.getmin();
+    ns.pop();
+    ns.getmin();
+    ns.pop();
+    ns.getmin();
+    ns.pop();
+    ns.getmin();
+    return 0;
+
+}
