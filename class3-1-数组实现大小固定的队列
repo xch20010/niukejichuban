@@ -1,0 +1,77 @@
+#include<string>
+#include<iostream>
+#include<queue>
+using namespace std;
+
+
+class arrQueue
+{
+    int* arr;
+    int size;
+    int queuesize;
+    int start; //表示出数的位置
+    int end; //表示进数的位置
+public:
+    arrQueue(int _size)
+    {
+        arr = new int[_size];
+        size = _size;
+        queuesize=0;
+        start=0;
+        end = 0;
+    }
+    void push(int num)
+    {
+        if(queuesize==size)
+        {
+            cout<<"Queue is full!"<<endl;
+            return;
+        }
+        arr[end] = num;
+        end = (end+1)%size; //等于size的时候返回到0
+        queuesize++;
+    }
+    void pop()
+    {
+        if(queuesize==0)
+        {
+            cout<<"Queue is empty!"<<endl;
+            return;
+        }
+        start = (start+1)%size;
+        queuesize--;
+    }
+    void printqueue()
+    {
+        if(queuesize==0)
+            cout<<"Queue has no number!"<<endl;
+        else
+        {
+            for(int i = 0;i<queuesize;i++)
+            {
+                cout<<arr[(start+i)%size];
+            }
+            cout<<endl;
+
+
+        }
+    }
+};
+
+
+int main()
+{
+    arrQueue as(3);
+    as.push(3);
+    as.push(4);
+    as.push(5);
+    as.push(7);
+    as.printqueue();
+    as.pop();
+    as.printqueue();
+    as.pop();
+    as.pop();
+    as.pop();
+    as.printqueue();
+    return 0;
+}
