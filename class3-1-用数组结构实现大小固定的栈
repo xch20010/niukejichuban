@@ -1,0 +1,71 @@
+#include<string>
+#include<iostream>
+#include<queue>
+using namespace std;
+
+
+class arrStack
+{
+    int* arr;
+    int size;
+    int index;
+public:
+    arrStack(int _size)
+    {
+        arr = new int[_size];
+        size = _size;
+        index = 0;
+    }
+    void push(int num) //push一个值为num的数进入栈
+    {
+        if(index==size)
+        {
+            cout<<"Stack is full. Cannot push the number."<<endl;
+            return;
+        }
+
+        arr[index] = num;
+        index++;
+    }
+    void pop()
+    {
+        if(index==0){
+            cout<<"No number in Stack.Cannot pop a number."<<endl;
+            return;
+        }
+
+        index--;
+    }
+    void PrintStack()
+    {
+        if(index==0)
+            cout<<"Stack is empty."<<endl;
+        else
+        {
+            for(int i = 0;i<index;i++)
+                cout<<arr[i]<<'\t';
+            cout<<endl;
+        }
+    }
+    ~arrStack()
+    {
+        delete[] arr;
+    }
+};
+
+
+int main()
+{
+    arrStack as(3);
+    as.push(3);
+    as.push(4);
+    as.push(5);
+    as.push(7);
+    as.PrintStack();
+    as.pop();
+    as.pop();
+    as.pop();
+    as.pop();
+    as.PrintStack();
+    return 0;
+}
