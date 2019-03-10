@@ -1,0 +1,55 @@
+#include<string>
+#include<iostream>
+#include<stack>
+#include<map>
+#include<queue>
+#include<vector>
+using namespace std;
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> vec;
+        if(root==NULL)
+            return vec;
+        vec.push_back(root->val);
+        vector<int> vecL = preorderTraversal(root->left);
+        vec.insert(vec.end(),vecL.begin(),vecL.end());
+        vector<int> vecR = preorderTraversal(root->right);
+        vec.insert(vec.end(),vecR.begin(),vecR.end());
+        return vec;
+    }
+
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> vec;
+        if(root==NULL)
+            return vec;
+        vector<int> vecL = inorderTraversal(root->left);
+        vec.insert(vec.end(),vecL.begin(),vecL.end());
+        vec.push_back(root->val);
+        vector<int> vecR = inorderTraversal(root->right);
+        vec.insert(vec.end(),vecR.begin(),vecR.end());
+        return vec;
+    }
+
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> vec;
+        if(root==NULL)
+            return vec;
+        vector<int> vecL = postorderTraversal(root->left);
+        vec.insert(vec.end(),vecL.begin(),vecL.end());
+        vector<int> vecR = postorderTraversal(root->right);
+        vec.insert(vec.end(),vecR.begin(),vecR.end());
+        vec.push_back(root->val);
+        return vec;
+    }
+
+};
