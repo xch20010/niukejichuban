@@ -1,0 +1,83 @@
+#include<string>
+#include<iostream>
+#include<stack>
+#include<queue>
+using namespace std;
+struct Node
+{
+    int data;
+    Node* next;
+};
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        stack<ListNode> s;
+        ListNode* cur = head;
+        while(cur!=NULL)
+        {
+            s.push(*cur);
+            cur=cur->next;
+        }
+        while(head!=NULL)
+        {
+            if(s.top()->val!=head->val)
+                return false;
+            s.pop()
+            head=head->next;
+        }
+        return true;
+    }
+    
+    bool isPalindrome2(ListNode* head)
+    {
+        if(head==NULL||head->next==NULL)
+            return true;
+        ListNode* n1=head; //慢指针
+        ListNode* n2=head; //快指针
+        while(n2!=NULL && n2->next!=NULL && n2->next->next!=NULL)
+        {
+            n1=n1->next;
+            n2=n2->next->next;
+        }
+        //1-2-3-2-1 慢指针跑到3，快指针到最后一个；123321 慢指针到第一个3，快指针到倒数第二个
+        ListNode* n3=NULL;
+        n2=n1->next;
+        n1->next = NULL;
+        while(n2!=NULL)
+        {
+            n3=n2->next;  //n3记录原来n2指的方向
+            n2->next=n1;
+            n1=n2;
+            n2=n3;
+        }
+        n3=n1; //n3记录最后一个节点
+        n2=head; //现在n2是头节点，n1是尾节点
+        bool res=true;
+        while(n2!=NULL)
+        {
+            if(n1->val!=n2->val)
+            {
+                res=false;
+                break;
+            }
+            n1=n1->next;
+            n2=n2->next;
+        }
+        n1=n3->next;
+        n3->next=NULL;
+        while(n1!=NULL)
+        {
+            n2=n1->next;
+            n1->next=n3;
+            n3=n1;
+            n1=n2;
+        }
+        return res;
+    }
+};
+};
+
+int main()
+{
+}
