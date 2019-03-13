@@ -1,4 +1,5 @@
 //超时  完成到134/136 很烦
+//更新：思路是对的，基本代码也是正确的，进行小修改即可通过（直接复制别人代码上去就是通过，代码基本一样）
 class Solution {
 public:
     int longestIncreasingPath(vector<vector<int>>& matrix) {
