@@ -1,5 +1,6 @@
 //超时  完成到134/136 很烦
 //更新：思路是对的，基本代码也是正确的，进行小修改即可通过（直接复制别人代码上去就是通过，代码基本一样）
+//更新：少写了一句话导致时间大幅度增加 第33行；
 class Solution {
 public:
     int longestIncreasingPath(vector<vector<int>>& matrix) {
@@ -28,6 +29,8 @@ public:
                 mx = max(mx,1+dfs(matrix,dp,x,y));
             }
         }
+        //下面这行前面没写
+        dp[i][j] = mx;
         return mx;
     }
 private:
