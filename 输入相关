@@ -25,8 +25,31 @@ vector<int> v;
 	{
 		cout<<v[i++]<<" ";
 	}
---------------------- 
-作者：Hello World程序员 
-来源：CSDN 
-原文：https://blog.csdn.net/qq_27500493/article/details/84327532 
-版权声明：本文为博主原创文章，转载请附上博文链接！
+
+
+//输入二维矩阵的情况
+    //输入
+    //2 2
+    //12
+    //34
+    int M,N;
+    cin>>M;
+    cin>>N; //缓存区中还存在'\n'
+    cin.ignore(10,'\n');
+    cout<<"M = "<<M<<endl;
+    cout<<"N = "<<N<<endl;
+    vector<vector<int>> A{M,vector<int> {N,0}};
+    for(int i = 0;i<M;i++)
+        for(int j = 0;j<=N;j++)
+        {
+            char c = cin.get();
+            if(c=='\n')
+                continue;
+            A[i][j]=c-'0';
+        }
+
+    for(int i = 0;i<M;i++)
+        for(int j = 0;j<N;j++)
+        {
+            cout<<A[i][j]<<endl;
+        }
