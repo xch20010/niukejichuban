@@ -1,0 +1,32 @@
+//数组
+int mk[100];
+int i=0;
+while(cin >> mk[i])
+	{
+			i++;
+			if (cin.get() == '\n')
+				break;
+     }
+
+//vector
+vector<int> v;
+	int a;
+	while(cin >> a)
+	{
+		v.push_back(a);
+		char c = cin.get();
+		if(c == '\n')
+			break;
+		
+	}
+	cout<<v.size()<<endl;
+	int i = 0;
+	while(v.size() > i)
+	{
+		cout<<v[i++]<<" ";
+	}
+--------------------- 
+作者：Hello World程序员 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_27500493/article/details/84327532 
+版权声明：本文为博主原创文章，转载请附上博文链接！
