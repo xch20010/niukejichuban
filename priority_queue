@@ -1,0 +1,45 @@
+priority_queue<int, vector<int>, greater<int> > q;  // 小顶堆,从小到大
+priority_queue<int, vector<int>, less<int> > q;     // 大顶堆
+
+
+
+    struct fruit{
+        string name;
+        int price;
+    };
+    struct cmp{
+        // "<" 表示 price 大的优先级高
+        bool operator() (fruit f1,fruit f2){
+            return f1.price < f2.price;
+        }
+    };
+    
+       void test3(){
+        priority_queue<fruit,vector<fruit>,cmp> q;
+        fruit f1,f2,f3;
+
+        f1.name = "apple";
+        f1.price = 5;
+
+        f2.name = "banana";
+        f2.price = 6;
+
+        f3.name = "pear";
+        f3.price = 7;
+
+        q.push(f1);
+        q.push(f2);
+        q.push(f3);
+
+        while(!q.empty()){
+            cout<<q.top().name<<":"<<q.top().price<<endl;
+            q.pop();
+        }
+    }
+
+    /*
+     结果：
+           pear:7
+           banana:6
+           apple:5
+    */
