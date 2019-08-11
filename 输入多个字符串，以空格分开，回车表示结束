@@ -1,0 +1,16 @@
+    while(cin>>s)
+    {
+        cout<<s<<endl;
+        if(cin.get()=='\n') break;
+    }
+    
+    /*输入输出如下：
+    a b c d e f g
+a
+b
+c
+d
+e
+f
+g
+    */
