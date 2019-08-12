@@ -1,0 +1,46 @@
+#include <iostream>
+#include<vector>
+#include<stack>
+#include<unordered_set>
+#include<queue>
+#include<algorithm>
+using namespace std;
+
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    vector<int> c(n,0);
+    vector<int> s(m+1,0);  //滑动窗口区间中1,2,3...,m的个数
+    int colors = 0; //滑动窗口区间中包含的颜色个数
+    int res=n+1; //如果有，最长为n，所以如果最后=n+1,返回-1表示没有
+    //cout<<n<<" "<<m<<endl;
+    for(int i=0;i<n;i++) //scanf("%d",&c[i]);
+        cin>>c[i];
+    for(int i=0,j=0;j<n;j++)
+    {
+        //对应的颜色是c[j]
+        if(s[c[j]]==0&&c[j]!=0) colors++;
+        s[c[j]]++;
+        if(colors == m)
+        {
+            while(c[i]==0||s[c[i]]>1)
+            {
+                s[c[i]]--;
+                i++;
+            }
+            res = min(res,j-i+1);
+        }
+    }
+    if(res==n+1)
+        res = -1;
+    cout<<res<<endl;
+}
+
+/*
+测试案例：
+12 5
+2 5 3 1 3 2 4 1 0 5 4 3
+
+答案是6
+*/
