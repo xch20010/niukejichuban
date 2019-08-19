@@ -24,4 +24,37 @@ int main()
     //在 C++ 中，通过迭代器可以访问映射中的每个映射，每个迭代器的 first 值对应 key，second 值对应 value。
     for (map<string,int>::iterator it = dict.begin();it!=dict.end();++it)
         cout<<it->first<<" is in class "<<it->second<<endl;
+        
+    //对map排序
+    //1、map这里指定less作为其默认比较函数(对象),就是默认按键值升序排列
+    // map<string, int> name_score_map;
+
+    // 2、可以自定义，按照键值升序排列，注意加载 
+    // #include <functional> // std::greater
+    // map<string, int, greater<string>> name_score_map;
+
+    //3、按照自定义内容进行排序，比如字符串的长度
+    //map<string, int, CmpByKeyLength> name_score_map;
+        
 }
+
+
+//map排序默认是对key排序，如果要对value排序，则将其放入一个vector中，对vector进行排序
+    map<string,int>mp;
+
+    for(int i=0;i<100;i+=10)
+    {
+        stringstream ss;
+        ss<<i;
+        string si = "m" + ss.str();
+        mp.insert(make_pair(si,i));
+    }
+
+    for(map<string,int>::iterator it = mp.begin();it!=mp.end();it++)
+    {
+        cout<< it->first << "  " << it->second <<endl;
+    }
+
+    vector<pair<string,int>>vt(mp.begin(),mp.end());
+
+    sort(vt.begin(),vt.end(),cmp());
