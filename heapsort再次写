@@ -1,0 +1,54 @@
+#include <iostream>
+#include<vector>
+#include<stack>
+#include<algorithm>
+using namespace std;
+//建立大根堆
+void heapinsert(vector<int>& nums,int index)
+{
+    while(nums[index]>nums[(index-1)/2])
+    {
+        swap(nums[index],nums[(index-1)/2]);
+        index = (index-1)/2;
+    }
+}
+
+void heapify(vector<int>& nums,int index,int heapsize)
+{
+    int left = index*2+1;
+    while(left<heapsize)
+    {
+        int largest = left+1<heapsize&&nums[left+1]>nums[left]?  left+1:left;
+        if(nums[index]<nums[largest])
+        {
+            swap(nums[index],nums[largest]);
+            index = largest;
+            left = index*2+1;
+        }
+        else
+            break;
+    }
+}
+
+void heapsort(vector<int>& nums)
+{
+    int n = nums.size();
+    //建立大根堆
+    for(int i=0;i<n;i++)
+        heapinsert(nums,i);
+    int j=n-1;
+    while(j>0)
+    {
+        swap(nums[0],nums[j--]);
+        heapify(nums,0,--n);
+    }
+}
+
+int main()
+{
+    vector<int> A={3,1,5,2,4,6,-3};
+    heapsort(A);
+    for(auto a:A)
+        cout<<a<<" ";
+    cout<<endl;
+}
