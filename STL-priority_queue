@@ -43,3 +43,84 @@ priority_queue<int, vector<int>, less<int> > q;     // 大顶堆
            banana:6
            apple:5
     */
+
+#include<iostream>
+#include<vector>
+#include<queue>
+using namespace std;
+int main()
+{
+priority_queue<int> pq;//最大值优先队列
+priority_queue<int,deque<int>,greater<int> > pq2;//最小值优先队列
+pq.push(10);
+pq.push(-1);
+cout<<pq.top()<<endl;
+cout<<pq.size()<<endl;
+while(!pq.empty())
+{
+cout<< pq.top() <<endl;//每次删除最大的
+pq.pop();
+}
+pq2.push(100);
+pq2.push(90);
+while(!pq2.empty())
+{
+cout<< pq2.top() <<endl;//每次删除最大的
+pq2.pop();
+}
+
+}
+
+基本操作：
+
+empty() 如果队列为空返回真
+
+pop() 删除对顶元素
+
+push() 加入一个元素
+
+size() 返回优先队列中拥有的元素个数
+
+top() 返回优先队列对顶元素
+
+在默认的优先队列中，优先级高的先出队。在默认的int型中先出队的为较大的数。
+
+使用方法：
+
+头文件：
+
+#include <queue>
+声明方式：
+
+1、普通方法：
+
+priority_queue<int>q;
+//通过操作，按照元素从大到小的顺序出队
+ 
+
+2、自定义优先级：
+
+struct cmp
+{
+operatorbool ()(int x, int y)
+{
+return　x > y; // x小的优先级高
+//也可以写成其他方式，如： return p[x] > p[y];表示p[i]小的优先级高
+}
+};
+priority_queue<int, vector<int>, cmp>q;//定义方法
+//其中，第二个参数为容器类型。第三个参数为比较函数。
+3、结构体声明方式：
+
+struct node
+{
+int x, y;
+friend booloperator< (node a, node b)
+{
+return a.x > b.x; //结构体中，x小的优先级高
+}
+};
+priority_queue<node>q;//定义方法
+//在该结构中，y为值, x为优先级。
+//通过自定义operator<操作符来比较元素中的优先级。
+//在重载”<”时，最好不要重载”>”，可能会发生编译错误
